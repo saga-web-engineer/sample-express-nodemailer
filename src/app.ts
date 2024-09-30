@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json({}));
 
 const port = serverPort;
-app.listen(port, () => console.log(`Server is running on port ${port}`)); // eslint-disable-line
+app.listen(port, () => console.log(`Server is running on port ${port}`));
 app.use(router);
 
 export const viteNodeApp = app;

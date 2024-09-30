@@ -1,4 +1,4 @@
-import express, { Response } from 'express';
+import express, { type Response } from 'express';
 
 import { sendmail } from '../controllers/contactController';
 import type { ContactRequestBody } from '../types/contactTypes';

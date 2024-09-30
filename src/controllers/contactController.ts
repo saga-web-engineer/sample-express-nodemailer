@@ -45,7 +45,7 @@ export async function sendmail(req: ContactRequestBody): Promise<void> {
       text: textContent,
     };
 
-    transporter.sendMail(toAdminMail, function (err, info) {
+    transporter.sendMail(toAdminMail, (err, info) => {
       if (err) {
         reject(err);
       } else {
