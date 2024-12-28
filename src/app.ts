@@ -1,23 +1,19 @@
 import cors from 'cors';
+import { config } from 'dotenv';
 import express, { type Application } from 'express';
 
-import { serverPort } from './configs/contactConfig';
-import router from './routes/contactRoute';
+import { router } from './routes/sendMailRoute';
+
+config();
 
 const app: Application = express();
-app.use(
-  cors({
-    origin: 'https://sample-express-nodemailer.netlify.app', // アクセス許可するオリジン
-    credentials: true, // レスポンスヘッダーにAccess-Control-Allow-Credentials追加
-    optionsSuccessStatus: 200, // レスポンスstatusを200に設定
-  }),
-);
+app.use(cors({}));
 
 //POSTのパラメータを取得
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({}));
 
-const port = serverPort;
+const port = Number(process.env.PORT) || 3002;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 app.use(router);
 
