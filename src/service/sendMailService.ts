@@ -4,10 +4,9 @@ import nodemailer from 'nodemailer';
 import type { RequestBody } from '../types/sendMailTypes';
 
 class MailService {
-  private transporter;
-
-  constructor() {
-    this.transporter = nodemailer.createTransport({
+  private createTransporter() {
+    return nodemailer.createTransport({
+      service: 'gmail',
       port: Number(process.env.MAILER_PORT),
       host: process.env.MAILER_HOST,
       auth: {
@@ -32,6 +31,8 @@ class MailService {
 
     const { name, message } = body;
 
+    const transporter = this.createTransporter();
+
     const textContent = `
       フォームからお問い合わせがありました。
       ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
@@ -47,7 +48,7 @@ class MailService {
       text: textContent,
     };
 
-    await this.transporter.sendMail(toAdminMail);
+    await transporter.sendMail(toAdminMail);
   }
 }
 
