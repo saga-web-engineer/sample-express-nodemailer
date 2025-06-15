@@ -31,8 +31,6 @@ class MailService {
 
     const { name, message } = body;
 
-    const transporter = this.createTransporter();
-
     const textContent = `
       フォームからお問い合わせがありました。
       ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
@@ -48,7 +46,7 @@ class MailService {
       text: textContent,
     };
 
-    await transporter.sendMail(toAdminMail);
+    await this.createTransporter().sendMail(toAdminMail);
   }
 }
 
