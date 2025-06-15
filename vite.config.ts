@@ -10,10 +10,10 @@ export default defineConfig({
       adapter: 'express',
       appPath: './src/app.ts',
       exportName: 'viteNodeApp',
-      tsCompiler: 'esbuild'
+      tsCompiler: 'esbuild',
     }),
   ],
   build: {
     minify: true,
-  }
+  },
 });
